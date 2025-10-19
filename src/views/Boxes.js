@@ -1,39 +1,21 @@
-import React, { useLayoutEffect, useRef } from 'react';
-import gsap from 'gsap';
-import { useGSAP } from '@gsap/react';
+import React from "react";
 
-export default function Boxes() {
-  const container = useRef();
-  const tl = useRef();
-
-  const toggleTimeline = () => {
-    tl.current.reversed(!tl.current.reversed());
-  };
-
-  useGSAP(
-    () => {
-      const boxes = gsap.utils.toArray('.box');
-      tl.current = gsap
-        .timeline()
-        .to(boxes[0], { x: 120, rotation: 360 })
-        .to(boxes[1], { x: -120, rotation: -360 }, '<')
-        .to(boxes[2], { y: -166 })
-        .reverse();
-    },
-    { scope: container }
-  );
-
+const Boxes = () => {
   return (
-    <main>
-      <section className="boxes-container" ref={container}>
-        <h2>Use the button to toggle a Timeline</h2>
-        <div>
-          <button onClick={toggleTimeline}>Toggle Timeline</button>
-        </div>
-        <div className="box gradient-blue">Box 1</div>
-        <div className="box gradient-blue">Box 2</div>
-        <div className="box gradient-blue">Box 3</div>
-      </section>
-    </main>
+    <div className="boxes-container" style={{ padding: "0", margin: "0" }}>
+      <iframe
+        src="/mwg_00/index.html"
+        title="MWG_00"
+        style={{
+          width: "100%",
+          height: "100vh",
+          border: "none",
+          borderRadius: "12px",
+          boxShadow: "0 0 20px rgba(0,0,0,0.1)",
+        }}
+      />
+    </div>
   );
-}
+};
+
+export default Boxes;
